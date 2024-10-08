@@ -1,0 +1,13 @@
+{
+  "name": "node_api_rest-projeto_de_api_para_sistema_de_biblioteca-01",
+  "version": "1.0.0",
+  "description": ": PROJETO EM FASE DE DESENVOLVIMENTO :",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": " Dev José Jhonata | Linkedin: https://www.linkedin.com/in/josejhonata/",
+  "license": "ISC"
+}
