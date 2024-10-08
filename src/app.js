@@ -14,11 +14,11 @@ const livros = [
     //dados teste para criar a rota livros, criarei a base de dados em outro lugar
     {
         id: 1,
-        título: "O Senhor dos Anéis"
+        titulo: "O Senhor dos Anéis"
     },
     {
         id: 2,
-        título: "O Hobbit"
+        titulo: "O Hobbit"
     },
 ];
 
@@ -43,9 +43,16 @@ app.get("/livros/:id", (req, res) => {
     res.status(200).json(livros[index]);
 });
 
+
 app.post("/livros", (req, res) => {
     livros.push(req.body);
     res.status(201).send("Livro adicionado com sucesso");
+});
+
+app.put("/livros/:id", (req, res) => {
+    const index = buscaLivro(req.params.id);
+    livros[index].titulo = req.body.titulo;
+    res.status(200).json(livros);
 });
 
 export default app;
