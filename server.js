@@ -6,9 +6,15 @@ import HTTP from 'http';
 
 const PORT = 3000;
 
+const rotas = {
+    "/" : "Desafio para formação de criação de apis em node",
+    "/livros" : "Entrei na rota de livros",
+    "/autores" : "Entrei na rota de autores",
+}
+
 const server = HTTP.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end("Desafio para formação de criação de apis em node");
+  res.end(rotas[req.url]);
 });
 
 server.listen(PORT, () => {
