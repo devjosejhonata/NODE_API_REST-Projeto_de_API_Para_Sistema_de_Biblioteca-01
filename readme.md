@@ -9,3 +9,7 @@ O projeto se trata de um sistema interno que foi construído para uma livraria, 
 - Utilizando no projeto o .gitignore para ignorar a pasta node_modules ao subir as alterações para o repositorio. Recomendavel dar uma olhada no package.json antes de instalar o node_modules novamente.
 
 - Utilizando o framwork express para gerenciamento de rotas e servidor http, npm install express@4.18.1
+
+- Utilizando o mongodb para base de dados, https://www.mongodb.com/atlas
+
+- Comando para instalar no projeto as dependencias do mongodb: npm install mongodb
