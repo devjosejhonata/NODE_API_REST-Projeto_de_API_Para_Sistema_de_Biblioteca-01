@@ -6,6 +6,7 @@
 
 import express from 'express';
 import conectaNaDataBase from './config/dbConnect.js';
+import livro from './models/livro.js';
 
 const app = express();
 
@@ -23,32 +24,14 @@ conexao.once("open", () => {
 // Middleware para permitir que o Express faça o parsing de requisições com corpo em JSON
 app.use(express.json());
 
-const livros = [ 
-    //dados teste para criar a rota livros, criarei a base de dados em outro lugar
-    {
-        id: 1,
-        titulo: "O Senhor dos Anéis"
-    },
-    {
-        id: 2,
-        titulo: "O Hobbit"
-    },
-];
-
-//função para buscar um livro pelo id
-function buscaLivro(id) {
-    return livros.findIndex(livro => {
-        return livro.id === Number(id);
-    });
-}
-
-
 app.get('/', (req, res) => {
     res.status(200).send('Desafio para formação de criação de apis em node');
 });
 
-app.get("/livros", (req, res) => {
-    res.status(200).json(livros);
+// Rotas para manipulação de livros
+app.get("/livros", async (req, res) => {
+    const listaLivros = await livro.find({}); //buscando todos os livros
+    res.status(200).json(listaLivros);
 });
 
 app.get("/livros/:id", (req, res) => {
