@@ -13,3 +13,5 @@ O projeto se trata de um sistema interno que foi construído para uma livraria, 
 - Utilizando o mongodb para base de dados, https://www.mongodb.com/atlas
 
 - Comando para instalar no projeto as dependencias do mongodb: npm install mongodb
+
+- Biblioteca instalada para intermediar a comunicação com o mongodb e o node, mongoose, então os metodos utilizados para fazer a conexão com o mongodb farao parte do mongoose: npm install mongoose@7.3.4 

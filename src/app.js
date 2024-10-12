@@ -1,11 +1,24 @@
 
 /*
-- Dentro desse arquivo iniciaremos toda a parte do framework express, gerenciar as rotas e servidor http
+- Dentro desse arquivo iniciaremos toda a parte do framework express, gerenciar as rotas e servidor http;
+- Dentro desse arquivo também faremos a conexão com o banco de dados;
 */
 
 import express from 'express';
+import conectaNaDataBase from './config/dbConnect.js';
 
 const app = express();
+
+// Conexão com o banco de dados
+const conexao = await conectaNaDataBase();
+
+conexao.on("error", (erro) => {
+    console.error("Erro ao conectar ao banco de dados", erro);
+});
+
+conexao.once("open", () => {
+    console.log("Conexão com o banco de dados realizada com sucesso");
+});
 
 // Middleware para permitir que o Express faça o parsing de requisições com corpo em JSON
 app.use(express.json());
