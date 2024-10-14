@@ -6,11 +6,23 @@
 
 import livro from '../models/livro.js';
 
-class LivroController {
 
+class LivroController {
+    
+    //metodo para buscar todos os livros
     static async listarLivros (req, res) {
-        const listaLivros = await livro.find({}); //buscando todos os livros
+        const listaLivros = await livro.find({});
         res.status(200).json(listaLivros);
+    }
+    
+    //Controller para o metodo POST
+    static async cadastrarLivro (req, res) {
+        try {
+            const novoLivro = await livro.create(req.body);
+            res.status(201).json({mensagem: "Livro cadastrado com sucesso", livro: novoLivro});
+        } catch (error) {
+            res.status(500).json({mensagem: `${error.message} - Falha ao cadastrar livro`});
+        }
     }
 };
 

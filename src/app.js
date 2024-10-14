@@ -6,9 +6,10 @@
 
 import express from 'express';
 import conectaNaDataBase from './config/dbConnect.js';
-import livro from './models/livro.js';
+import routes from './routes/index.js';
 
 const app = express();
+routes(app);
 
 // Conexão com o banco de dados
 const conexao = await conectaNaDataBase();
@@ -21,18 +22,6 @@ conexao.once("open", () => {
     console.log("Conexão com o banco de dados realizada com sucesso");
 });
 
-// Middleware para permitir que o Express faça o parsing de requisições com corpo em JSON
-app.use(express.json());
-
-app.get('/', (req, res) => {
-    res.status(200).send('Desafio para formação de criação de apis em node');
-});
-
-// Rotas para manipulação de livros
-// app.get("/livros", async (req, res) => {
-//     const listaLivros = await livro.find({}); //buscando todos os livros
-//     res.status(200).json(listaLivros);
-// });
 
 app.get("/livros/:id", (req, res) => {
     const index = buscaLivro(req.params.id);
@@ -40,10 +29,10 @@ app.get("/livros/:id", (req, res) => {
 });
 
 
-app.post("/livros", (req, res) => {
-    livros.push(req.body);
-    res.status(201).send("Livro adicionado com sucesso");
-});
+// app.post("/livros", (req, res) => {
+//     livros.push(req.body);
+//     res.status(201).send("Livro adicionado com sucesso");
+// });
 
 app.put("/livros/:id", (req, res) => {
     const index = buscaLivro(req.params.id);
