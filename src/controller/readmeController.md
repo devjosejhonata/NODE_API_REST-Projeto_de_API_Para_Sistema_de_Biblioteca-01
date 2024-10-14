@@ -1,0 +1,1 @@
+Dentro dessa pasta controller conterá a parte de requisição e resposta da aplicação. Dentro do controller, nós centralizaremos toda a lógica que está relacionada às ações que podem ser feitas em um livro, ou seja, o que as rotas vão chamar para executar as operações e o manuseio das requisições e respostas correspondentes.

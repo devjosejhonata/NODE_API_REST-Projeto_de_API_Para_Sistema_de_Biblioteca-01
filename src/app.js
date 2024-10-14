@@ -29,10 +29,10 @@ app.get('/', (req, res) => {
 });
 
 // Rotas para manipulação de livros
-app.get("/livros", async (req, res) => {
-    const listaLivros = await livro.find({}); //buscando todos os livros
-    res.status(200).json(listaLivros);
-});
+// app.get("/livros", async (req, res) => {
+//     const listaLivros = await livro.find({}); //buscando todos os livros
+//     res.status(200).json(listaLivros);
+// });
 
 app.get("/livros/:id", (req, res) => {
     const index = buscaLivro(req.params.id);
