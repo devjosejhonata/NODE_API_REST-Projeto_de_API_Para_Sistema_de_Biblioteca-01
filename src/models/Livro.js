@@ -7,6 +7,7 @@
 */
 
 import mongoose from "mongoose";
+import { autorSchema } from "./Autor.js";
 
 //criando as propriedades que o livro terá
 const livroSchema = new mongoose.Schema({ //criando o schema do livro
@@ -14,7 +15,8 @@ const livroSchema = new mongoose.Schema({ //criando o schema do livro
     titulo: { type: String, required: true },
     editora: { type: String },
     preco: { type: Number },
-    paginas: { type: Number }
+    paginas: { type: Number }, 
+    autor: autorSchema
     
 }, {versionKey: false}); //removendo a versão do documento
 
