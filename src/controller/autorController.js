@@ -6,7 +6,7 @@
 todos os autores, listar um autor por ID, cadastrar um autor, atualizar um autor e excluir um autor;
 */
 
-import autor from '../models/Autor.js';
+import { autor } from '../models/Autor.js';
 
 
 class AutorController {
