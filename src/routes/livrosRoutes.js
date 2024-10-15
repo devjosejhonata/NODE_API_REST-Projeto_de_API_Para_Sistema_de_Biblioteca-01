@@ -11,6 +11,7 @@ const routes = express.Router();
 // Rotas chamando os metodos do controller, para o recurso livros
 // GET, POST, PUT, DELETE
 routes.get('/livros', LivroController.listarLivros);
+routes.get('/livros/busca', LivroController.listarLivrosPorEditora);
 routes.get('/livros/:id', LivroController.listarLivroPorID);
 routes.post('/livros', LivroController.cadastrarLivro);
 routes.put('/livros/:id', LivroController.atualizarLivro);
