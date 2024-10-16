@@ -1,4 +1,4 @@
-: PROJETO EM FASE DE DESENVOLVIMENTO :
+: API Rest em Node.js :
 
 Projeto de uma API Rest desenvolvida em Node com Express e MongoDB. Praticando habilidades com API Rest, Banco de dados, Integração com banco de dados, Requisição HTTP.
 

@@ -1,7 +1,7 @@
 {
   "name": "node_api_rest-projeto_de_api_para_sistema_de_biblioteca-01",
   "version": "1.0.0",
-  "description": ": PROJETO EM FASE DE DESENVOLVIMENTO :",
+  "description": ": API Rest em Node.js :",
   "main": "index.js",
   "type": "module",
   "scripts": {
