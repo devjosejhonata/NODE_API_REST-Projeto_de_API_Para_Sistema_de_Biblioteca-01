@@ -6,6 +6,7 @@
 
 import livro from '../models/livro.js';
 import { autor } from '../models/Autor.js';
+import mongoose from 'mongoose';
 
 
 class LivroController {
@@ -24,10 +25,23 @@ class LivroController {
     static async listarLivroPorID (req, res) {
         try {
             const id = req.params.id;
+    
+            // Verificação se o ID é válido
+            if (!mongoose.Types.ObjectId.isValid(id)) {
+                return res.status(400).json({ message: "ID do livro inválido" });
+            }
+    
             const livroEncontrado = await livro.findById(id);
+    
+            // Verificação se o livro foi encontrado
+            if (!livroEncontrado) {
+                return res.status(404).json({ message: "Livro não encontrado" });
+            }
+    
             res.status(200).json(livroEncontrado);
         } catch (erro) {
-            res.status(500).json({ message: `${erro.message} - falha na requisição do livro` });
+            // Tratamento de erro interno no servidor
+            res.status(500).json({ message: `${erro.message} - Erro interno no servidor` });
         }
     }
     

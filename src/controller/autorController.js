@@ -6,6 +6,7 @@
 todos os autores, listar um autor por ID, cadastrar um autor, atualizar um autor e excluir um autor;
 */
 
+import mongoose from 'mongoose';
 import { autor } from '../models/Autor.js';
 
 
@@ -25,10 +26,25 @@ class AutorController {
     static async listarAutorPorID (req, res) {
         try {
             const id = req.params.id;
+
+            // Valida se o ID fornecido é válido no formato MongoDB
+            // Verificação se o ID é válido usando o método do Mongoose
+            if (!mongoose.Types.ObjectId.isValid(id)) {
+                return res.status(400).json({ message: "ID inválido" });
+            }
+
             const autorEncontrado = await autor.findById(id);
+
+            // Verifica se o autor foi encontrado
+            if (!autorEncontrado) {
+                return res.status(404).json({ message: "Autor não encontrado" });
+            }
+
             res.status(200).json(autorEncontrado);
+
         } catch (erro) {
-            res.status(500).json({ message: `${erro.message} - falha na requisição do autor` });
+            // Caso o erro seja interno no servidor (falha de conexão, etc.)
+            res.status(500).json({ message: `${erro.message} - Erro interno no servidor` });
         }
     }
     
