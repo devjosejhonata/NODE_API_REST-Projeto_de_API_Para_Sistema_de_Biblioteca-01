@@ -13,9 +13,14 @@ import { autorSchema } from "./Autor.js";
 const livroSchema = new mongoose.Schema({ //criando o schema do livro
     id: { type: mongoose.Schema.Types.ObjectId },
     titulo: { type: String, required: true },
-    editora: { type: String },
-    preco: { type: Number },
-    paginas: { type: Number }, 
+    editora: { type: String, required: true  },
+    preco: { type: Number, required: true },
+    paginas: { 
+        type: Number, 
+        min: [10, "O livro deve ter entre 10 e 1000 páginas"], 
+        max: [1000, "O livro deve ter entre 10 e 1000 páginas"],
+        required: true   
+    }, 
     autor: autorSchema
     
 }, {versionKey: false}); //removendo a versão do documento
