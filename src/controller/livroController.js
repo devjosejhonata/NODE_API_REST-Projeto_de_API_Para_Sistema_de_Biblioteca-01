@@ -4,7 +4,7 @@
 - Nesse arquivo contera uma classe com varios metodos pra cada operação que pode ser feita em um livro;
 */
 
-import livro from '../models/livro.js';
+import livro from '../models/Livro.js';
 import { autor } from '../models/Autor.js';
 import mongoose from 'mongoose';
 
