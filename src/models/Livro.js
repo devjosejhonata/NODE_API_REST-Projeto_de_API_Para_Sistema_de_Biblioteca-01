@@ -21,9 +21,23 @@ const livroSchema = new mongoose.Schema({ //criando o schema do livro
         max: [1000, "O livro deve ter entre 10 e 1000 páginas"],
         required: true   
     }, 
-    autor: autorSchema
+    autor: autorSchema, 
+    dataAdicao: { type: Date, default: Date.now }
     
 }, {versionKey: false}); //removendo a versão do documento
+
+// Altera o formato da data de adição do livro
+// Formata a data para o padrão brasileiro
+livroSchema.set('toJSON', {
+    transform: (doc, ret) => {
+        // Formata a data apenas para exibição
+        if (ret.dataAdicao) {
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            ret.dataAdicao = new Date(ret.dataAdicao).toLocaleDateString('pt-BR', options);
+        }
+        return ret;
+    }
+});
 
 const livro = mongoose.model ("livros", livroSchema); //fechando o modelo do livro
 

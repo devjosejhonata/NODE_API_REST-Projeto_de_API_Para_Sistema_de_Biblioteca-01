@@ -15,8 +15,39 @@ class AutorController {
     //metodo para buscar todos os autores
     static async listarAutores (req, res) {
         try {
-            const listaAutores = await autor.find({});
-            res.status(200).json(listaAutores);
+
+            // Define limite e página padrão
+            let { limite = 5, pagina = 1 } = req.query;
+
+            // Converte limite e página para números inteiros
+            limite = parseInt(limite);
+            pagina = parseInt(pagina);
+
+            // Valida se os parâmetros são números positivos
+            if (isNaN(limite) || limite <= 0 || isNaN(pagina) || pagina <= 0) {
+                return res.status(400).json({ message: "Limite e página devem ser números positivos." });
+            }
+
+            // Contagem total de documentos
+            const totalAutores = await autor.countDocuments({});
+            const totalPaginas = Math.ceil(totalAutores / limite);
+
+            // Verifica se a página solicitada existe
+            if (pagina > totalPaginas) {
+                return res.status(404).json({ message: "Página não encontrada." });
+            }
+
+            // Busca os autores com paginação
+            const listaAutores = await autor.find({}).skip((pagina - 1) * limite).limit(limite);
+
+            // Retorna a página atual, o total de páginas e o total de autores
+            res.status(200).json({
+                autores: listaAutores,
+                paginaAtual: pagina,
+                totalPaginas: totalPaginas,
+                totalAutores: totalAutores
+            });
+            
         } catch (erro) {
             res.status(500).json({ message: `${erro.message} - falha na requisição` });
         }
